@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour
     public float enemySpawnIntervalMax = 20f; // Intervalo máximo entre spawns
     private bool isGameOver = false;
 
+    //spawn asteroid
+     public GameObject asteroidPrefab;
+    public float spawnRate = 8f;
+    public float spawnDistance = 10f;
+
 
 
     private void Awake()
@@ -40,6 +45,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SpawnEnemyShip());
+         InvokeRepeating("SpawnAsteroid", 0f, spawnRate);
     }
 
     public void AddScore(int points)
@@ -130,4 +136,22 @@ Instantiate(enemyShipPrefab, spawnPosition, Quaternion.identity);
             }
         }
     }
+    void SpawnAsteroid()
+{
+    Vector2 spawnPosition = Random.insideUnitCircle.normalized * spawnDistance;
+    GameObject asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
+
+    float randomSize = Random.Range(3.0f, 5.0f);
+    Asteroid asteroidScript = asteroid.GetComponent<Asteroid>();
+    if (asteroidScript != null)
+    {
+        asteroidScript.SetSize(randomSize);  // Define o tamanho aleatório
+        asteroidScript.SetDirection(Random.insideUnitCircle.normalized);  // Direção aleatória
+        asteroidScript.SetMovement();  // Inicializa o movimento
+    }
+    else
+    {
+        Debug.LogError("Prefab do asteroide não possui o script Asteroid!");
+    }
+}
 }

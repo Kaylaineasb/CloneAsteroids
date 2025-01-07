@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainManager : MonoBehaviour
+public class StartGame : MonoBehaviour
 {
-    public void StartGame()
+
+   public void StartScene()
     {
         SceneManager.LoadScene("play");
     }
-
 }
