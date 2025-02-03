@@ -126,6 +126,7 @@ public void RestartGame()
     {
         while (!isGameOver)
         {
+            //sorteia um tempo e espera
             float waitTime = Random.Range(enemySpawnIntervalMin, enemySpawnIntervalMax);
             yield return new WaitForSeconds(waitTime);
 

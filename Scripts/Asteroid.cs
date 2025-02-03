@@ -11,7 +11,6 @@ public class Asteroid : MonoBehaviour
     public float sizeReduction = 1.0f;
     public GameObject asteroidPrefab;
     
-    // Novo limite de tamanho para impedir divisão
     public float preventSplitSize = 2.5f;  // Tamanho em que a divisão é proibida
 
     private Rigidbody2D rb;
